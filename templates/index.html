@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Will this account convert?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #ab1417;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #19551f;
+        }
+
+        p {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Describe the Account:</h2>
+    <form action="/predict" method="post">
+        <input type="text" name="Avg Policy Size" placeholder="Avg Policy Size" required>
+        <input type="text" name="Years Positive" placeholder="Years Positive" required>
+        <input type="text" name="Operating Acreage" placeholder="Operating Acreage" required>
+        <input type="text" name="Rain Index Variance" placeholder="Rain Index Variance" required>
+        <input type="text" name="Distance to Nearest Customer (Miles)" placeholder="Distance to Nearest Customer (Miles)" required>
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction_text %}
+    <h3>{{ prediction_text }}</h3>
+    {% endif %}
+
+    <p>A 1 means the account is 78% likely to convert, and a 0 means they are 78% likely not to convert.</p>
+    <br>
+    <p>
+        A Random Forest Classifier is like a team project where each team member (in this case, a "decision tree") works on solving the same problem but with a slightly different approach. Imagine you're trying to figure out what kind of music a person likes based on various factors like age, favorite movies, and hobbies. Each team member looks at a subset of the information and makes their best guess.
+
+        Each decision tree in the Random Forest makes its prediction based on the data it looks at. These trees are created by randomly selecting data points and features from the dataset, which means each tree gets a unique set of information to work with. This randomness helps the model to be more versatile and less biased toward specific patterns, making it strong against overfitting (where a model is too tailored to the training data and performs poorly on new, unseen data).
+
+        After all the trees have made their predictions, the Random Forest takes a vote to see which outcome (like which music genre) got the most support from the trees. The prediction with the majority vote becomes the final answer.
+
+        So, in essence, a Random Forest Classifier combines the power of multiple decision-making models to come up with a more accurate and robust prediction than any single tree could provide on its own. It's a way of pooling diverse opinions to arrive at a consensus, making it a powerful tool for classification problems in machine learning.
+    </p>
+</body>
+
+</html>
